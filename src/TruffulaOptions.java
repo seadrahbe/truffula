@@ -102,6 +102,14 @@ public class TruffulaOptions  {
    */
   public TruffulaOptions(String[] args) throws IllegalArgumentException, FileNotFoundException {
     // TODO: Replace the below lines with your implementation
+    if (args[2] == null) {
+      throw new FileNotFoundException("File not found.");
+    }
+
+    for (int i = 0; i < 3; i++) {
+      if (args[i] != "-h" || args[i] != "-nc")
+    }
+
     root = null;
     showHidden = false;
     useColor = false;
