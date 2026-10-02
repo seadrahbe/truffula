@@ -90,10 +90,6 @@ public class ColorPrinter {
       throw new NullPointerException("Input cannot be null");
     }
 
-    if (!(message instanceof String)) {
-      throw new IllegalArgumentException("Input must be a String.");
-    }
-
     if (reset) {
       printStream.print(currentColor + message + ConsoleColor.RESET);
     } else {
