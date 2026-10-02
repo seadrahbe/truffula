@@ -35,5 +35,10 @@ PLEASE MAKE FREQUENT COMMITS AS YOU FILL OUT THIS FILE.
 - has multiple constructors for various options
 - Holds wave 4 - 7 instructions
 - printTree method will be implemented later, use out.println
+- TEST: checks for operating system
+- Method for use when making hidden files for tests to ensure functionality with windows + unix systems
+- Contains test for exact output w custom print stream. Creates a folder, files, hidden folder, subdirs, and files in subdirs. 
 
 ## AlphabeticalFileSorter.java
+- Utility for sorting array of files alphabetically + ignores case
+- Takes array of files, returns it sorted
