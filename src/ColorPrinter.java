@@ -86,6 +86,13 @@ public class ColorPrinter {
    * @param reset   if true, resets the color after printing; if false, keeps the current color
    */
   public void print(String message, boolean reset) {
+    if (message == null) {
+      throw new NullPointerException("Input cannot be null");
+    }
+
+    if (!(message instanceof String)) {
+      throw new IllegalArgumentException("Input must be a String.");
+    }
 
     if (reset) {
       printStream.print(currentColor + message + ConsoleColor.RESET);
