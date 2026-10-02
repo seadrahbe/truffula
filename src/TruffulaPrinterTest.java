@@ -61,6 +61,71 @@ public class TruffulaPrinterTest {
     }
 
     @Test 
+    public void testPrintTree_FormattingOnly_NoOrderNoColor_OneFile(@TempDir File tempDir) throws IOException {
+
+        // Create "myFolder"
+        File myFolder = new File(tempDir, "myFolder");
+        assertTrue(myFolder.mkdir(), "myFolder should be created");
+
+
+         // Set up TruffulaOptions 
+        TruffulaOptions options = new TruffulaOptions(myFolder, false, false);
+
+        // Capture output using a custom PrintStream
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(baos);
+
+        // Instantiate TruffulaPrinter with custom PrintStream
+        TruffulaPrinter printer = new TruffulaPrinter(options, printStream);
+
+        // Call printTree (output goes to printStream)
+        printer.printTree();
+
+        // Retrieve printed output
+        String output = baos.toString();
+        String nl = System.lineSeparator();
+
+        StringBuilder expected = new StringBuilder();
+        expected.append(ConsoleColor.WHITE).append("myFolder/").append(nl).append(ConsoleColor.RESET);
+
+        // Assert that the output matches the expected output exactly
+        assertEquals(expected.toString(), output);
+    }
+
+    @Test 
+    public void testPrintTree_FormattingOnly_NoOrderNoColor_OneFile(@TempDir File tempDir) throws IOException {
+        // myFolder/
+
+        // Create "myFolder"
+        File myFolder = new File(tempDir, "myFolder");
+        assertTrue(myFolder.mkdir(), "myFolder should be created");
+
+
+         // Set up TruffulaOptions 
+        TruffulaOptions options = new TruffulaOptions(myFolder, false, false);
+
+        // Capture output using a custom PrintStream
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(baos);
+
+        // Instantiate TruffulaPrinter with custom PrintStream
+        TruffulaPrinter printer = new TruffulaPrinter(options, printStream);
+
+        // Call printTree (output goes to printStream)
+        printer.printTree();
+
+        // Retrieve printed output
+        String output = baos.toString();
+        String nl = System.lineSeparator();
+
+        StringBuilder expected = new StringBuilder();
+        expected.append(ConsoleColor.WHITE).append("myFolder/").append(nl).append(ConsoleColor.RESET);
+
+        // Assert that the output matches the expected output exactly
+        assertEquals(expected.toString(), output);
+    }
+
+    @Test 
     public void testPrintTree_FormattingOnly_NoOrderNoColor(@TempDir File tempDir) throws IOException {
         // Build the example directory structure:
         // myFolder/
