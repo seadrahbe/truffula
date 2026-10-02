@@ -107,7 +107,6 @@ public class TruffulaOptions  {
       throw new IllegalArgumentException("Path is missing.");
     }
 
-    File root = null;
     boolean showHidden = false;
     boolean useColor = true;
 
@@ -125,8 +124,19 @@ public class TruffulaOptions  {
       }
     }
 
+    String path = args[args.length - 1];
+    if (path.equals("-h") || path.equals("-nc")) {
+        throw new IllegalArgumentException("No path provided.");
+    }
 
+    File dir = new File(path);
+    if (!dir.exists() || !dir.isDirectory()) {
+        throw new FileNotFoundException("Directory not found.");
+    }
 
+    this.root = dir;
+    this.showHidden = showHidden;
+    this.useColor = useColor;
 
   }
 
