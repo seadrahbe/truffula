@@ -131,7 +131,7 @@ public class TruffulaPrinter {
   
     color++;
 
-    if (color > 3) {
+    if (color > 2) {
       color = 0;
     }
 
