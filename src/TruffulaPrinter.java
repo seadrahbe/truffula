@@ -121,17 +121,19 @@ public class TruffulaPrinter {
     if (node == null || node.isHidden()) return;
 
   
-    String output = DEFAULT_COLOR_SEQUENCE.get(color) + "   ".repeat(depth) + node.getName();
+    String output = "   ".repeat(depth) + node.getName();
 
     if (node.isDirectory()) {
       output += "/";
     }
 
+    out.setCurrentColor(colorSequence.get(color));
+
     out.println(output);
   
     color++;
 
-    if (color > 2) {
+    if (color > colorSequence.size()) {
       color = 0;
     }
 
