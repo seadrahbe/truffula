@@ -104,7 +104,7 @@ public class ColorPrinter {
    * @param printStream the PrintStream to which output will be written
    */
   public ColorPrinter(PrintStream printStream) {
-    this(printStream, ConsoleColor.WHITE);
+    this(printStream, ConsoleColor.RESET);
   }
 
   /**

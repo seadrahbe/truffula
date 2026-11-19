@@ -137,7 +137,7 @@ public class TruffulaPrinter {
       color = 0;
     }
 
-    if (node.isDirectory() && node.listFiles() != new File[0]) {
+    if (node.isDirectory() && node.listFiles().length > 0) {
       
       File[] sorted = AlphabeticalFileSorter.sort(node.listFiles());
 
