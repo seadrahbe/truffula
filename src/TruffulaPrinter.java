@@ -133,7 +133,7 @@ public class TruffulaPrinter {
   
     color++;
 
-    if (color > colorSequence.size()) {
+    if (color > colorSequence.size() - 1) {
       color = 0;
     }
 
