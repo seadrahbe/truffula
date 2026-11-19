@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.PrintStream;
 import java.util.List;
+import java.util.Arrays;
 
 /**
  * TruffulaPrinter is responsible for printing a directory tree structure
@@ -134,11 +135,12 @@ public class TruffulaPrinter {
       color = 0;
     }
 
-    File[] sorted = node.listFiles();
-
     if (node.isDirectory() && node.listFiles() != new File[0]) {
-      for (File child : node.listFiles()) {
-        printTree(child, depth + 1, color);
+      
+      File[] sorted = AlphabeticalFileSorter.sort(node.listFiles());
+
+      for (int i = 0; i < sorted.length; i++) {
+        printTree(sorted[i], depth + 1, color);
       }
     }
 
