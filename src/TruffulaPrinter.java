@@ -112,24 +112,33 @@ public class TruffulaPrinter {
     // - For Wave 6: Use AlphabeticalFileSorter
     // DO NOT USE SYSTEM.OUT.PRINTLN
     // USE out.println instead (will use your ColorPrinter)
-
-    printTree(options.getRoot(), 0);
+  
+    printTree(options.getRoot(), 0, 0);
   }
 
-  public void printTree(File node, int depth) {
-    if (node == null) return;
+  public void printTree(File node, int depth, int color) {
+    if (node == null || node.isHidden()) return;
 
-    String output = "   ".repeat(depth) + node.getName();
+  
+    String output = DEFAULT_COLOR_SEQUENCE.get(color) + "   ".repeat(depth) + node.getName();
 
     if (node.isDirectory()) {
       output += "/";
     }
 
     out.println(output);
+  
+    color++;
+
+    if (color > 3) {
+      color = 0;
+    }
+
+    File[] sorted = node.listFiles();
 
     if (node.isDirectory() && node.listFiles() != new File[0]) {
       for (File child : node.listFiles()) {
-        printTree(child, depth + 1);
+        printTree(child, depth + 1, color);
       }
     }
 
