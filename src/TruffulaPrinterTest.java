@@ -96,20 +96,7 @@ public class TruffulaPrinterTest {
     }
 
     @Test 
-    public void testPrintTree_FormattingOnly_NoOrderNoColor(@TempDir File tempDir) throws IOException {
-        // Build the example directory structure:
-        // myFolder/
-        //    .hidden.txt
-        //    Apple.txt
-        //    banana.txt
-        //    Documents/
-        //       images/
-        //          Cat.png
-        //          cat.png
-        //          Dog.png
-        //       notes.txt
-        //       README.md
-        //    zebra.txt
+    public void testPrintTree_FormattingOnly_OrderedNoColor(@TempDir File tempDir) throws IOException {
 
         // Create "myFolder"
         File myFolder = new File(tempDir, "myFolder");
@@ -162,15 +149,15 @@ public class TruffulaPrinterTest {
 
         StringBuilder expected = new StringBuilder();
         expected.append(ConsoleColor.WHITE).append("myFolder/").append(nl).append(ConsoleColor.RESET);
-        expected.append(ConsoleColor.WHITE).append("   zebra.txt").append(nl).append(ConsoleColor.RESET);
         expected.append(ConsoleColor.WHITE).append("   Apple.txt").append(nl).append(ConsoleColor.RESET);
         expected.append(ConsoleColor.WHITE).append("   banana.txt").append(nl).append(ConsoleColor.RESET);
         expected.append(ConsoleColor.WHITE).append("   Documents/").append(nl).append(ConsoleColor.RESET);
         expected.append(ConsoleColor.WHITE).append("      images/").append(nl).append(ConsoleColor.RESET);
         expected.append(ConsoleColor.WHITE).append("         cat.png").append(nl).append(ConsoleColor.RESET);
         expected.append(ConsoleColor.WHITE).append("         Dog.png").append(nl).append(ConsoleColor.RESET);
-        expected.append(ConsoleColor.WHITE).append("      README.md").append(nl).append(ConsoleColor.RESET);
         expected.append(ConsoleColor.WHITE).append("      notes.txt").append(nl).append(ConsoleColor.RESET);
+        expected.append(ConsoleColor.WHITE).append("      README.md").append(nl).append(ConsoleColor.RESET);
+        expected.append(ConsoleColor.WHITE).append("   zebra.txt").append(nl).append(ConsoleColor.RESET);
 
         // Assert that the output matches the expected output exactly
         assertEquals(expected.toString(), output);
