@@ -131,10 +131,11 @@ public class TruffulaPrinter {
 
     out.println(output);
   
-    color++;
-
-    if (color > colorSequence.size() - 1) {
-      color = 0;
+    if (options.isUseColor()) {
+      color++;
+      if (color > colorSequence.size() - 1) {
+        color = 0;
+      }
     }
 
     if (node.isDirectory() && node.listFiles().length > 0) {
