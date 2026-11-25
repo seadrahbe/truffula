@@ -254,6 +254,42 @@ public class TruffulaPrinterTest {
         assertEquals(expected.toString(), output);
     }
 
+    @Test
+    public void testPrintTree_ColorsCycling(@TempDir File tempDir) throws IOException {
+
+        File myFolder = new File(tempDir, "white");
+        assertTrue(myFolder.mkdir());
+
+        File levelOne = new File(myFolder, "purple");
+        assertTrue(levelOne.mkdir());
+
+        File levelTwo = new File(levelOne, "yellow");
+        assertTrue(levelTwo.mkdir());
+
+        File levelThree = new File(levelTwo, "white");
+        assertTrue(levelThree.mkdir());
+
+        TruffulaOptions options = new TruffulaOptions(myFolder, false, true);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(baos);
+
+        TruffulaPrinter printer = new TruffulaPrinter(options, printStream);
+        printer.printTree();
+
+        String output = baos.toString();
+        String nl = System.lineSeparator();
+
+        StringBuilder expected = new StringBuilder();
+        expected.append(ConsoleColor.WHITE).append("white/").append(nl).append(ConsoleColor.RESET);
+        expected.append(ConsoleColor.PURPLE).append("   purple/").append(nl).append(ConsoleColor.RESET);
+        expected.append(ConsoleColor.YELLOW).append("      yellow/").append(nl).append(ConsoleColor.RESET);
+        expected.append(ConsoleColor.WHITE).append("         white/").append(nl).append(ConsoleColor.RESET);
+
+        assertEquals(expected.toString(), output);
+    }
+
+
     @Test 
     public void testPrintTree_HiddenFileExcluded(@TempDir File tempDir) throws IOException {
         
