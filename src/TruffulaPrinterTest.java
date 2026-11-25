@@ -164,7 +164,7 @@ public class TruffulaPrinterTest {
     }
 
     @Test
-    public void testPrintTree_ExactOutput_WithCustomPrintStream(@TempDir File tempDir) throws IOException {
+    public void testPrintTree_ExactOutput_WithCustomPrintStream_ShowHidden(@TempDir File tempDir) throws IOException {
         // Build the example directory structure:
         // myFolder/
         //    .hidden.txt
@@ -215,7 +215,7 @@ public class TruffulaPrinterTest {
         dog.createNewFile();
 
         // Set up TruffulaOptions with showHidden = false and useColor = true
-        TruffulaOptions options = new TruffulaOptions(myFolder, false, true);
+        TruffulaOptions options = new TruffulaOptions(myFolder, true, true);
 
         // Capture output using a custom PrintStream
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -239,6 +239,7 @@ public class TruffulaPrinterTest {
 
         StringBuilder expected = new StringBuilder();
         expected.append(white).append("myFolder/").append(nl).append(reset);
+        expected.append(purple).append("   .hidden.txt").append(nl).append(reset);
         expected.append(purple).append("   Apple.txt").append(nl).append(reset);
         expected.append(purple).append("   banana.txt").append(nl).append(reset);
         expected.append(purple).append("   Documents/").append(nl).append(reset);
@@ -252,4 +253,5 @@ public class TruffulaPrinterTest {
         // Assert that the output matches the expected output exactly
         assertEquals(expected.toString(), output);
     }
+
 }

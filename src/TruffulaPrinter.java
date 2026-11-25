@@ -118,7 +118,7 @@ public class TruffulaPrinter {
   }
 
   public void printTree(File node, int depth, int color) {
-    if (node == null || node.isHidden()) return;
+    if (node == null || (node.isHidden() && !options.isShowHidden())) return;
 
   
     String output = "   ".repeat(depth) + node.getName();
